@@ -2,21 +2,24 @@
 <html>
 <head>
 <meta charset="UTF-8"> 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
 <!-- Twitter Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- riot.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.5.0/riot+compiler.min.js"></script>
+<!-- Custom Tags -->
+<script src="js/tags/invite_form.tag" type="riot/tag"></script>
 </head>
 <body>
   <div class="container">
     <h1>joinslack for <%= team %></h1>
-    <form method="POST" action="/invite">
-      <div class="form-group">
-        <label for="email">Email address:</label>
-        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
-      </div>
-      <button type="submit" class="btn btn-default">Send invite</button>
-    </form>
+    <invite_form />
   </div>
+  <script>
+    riot.mount('invite_form');
+  </script>
 </body>
 </html>

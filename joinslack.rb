@@ -4,6 +4,7 @@ require 'json'
 require 'optparse'
 require 'webrick'
 require 'erb'
+require 'json'
 
 class InviteResult
   attr_accessor :response
@@ -62,11 +63,11 @@ def start_server(team, token)
     email = req.query['email']
     result = invite(team, email, token)
 
-    message = result.succeeded? ? "Succeeded to invite #{email} !" : "Failed to invite #{email} ..."
-
-    erb = ERB.new(open(path + 'invite.erb'){|f| f.read})
-    res.body << erb.result(binding)
+    res['content-type'] = 'application/json'
+    res.body << {'succeeded' => result.succeeded?}.to_json
   }
+
+  srv.mount('/js', WEBrick::HTTPServlet::FileHandler, path + '/js')
 
   Signal.trap(:INT){ srv.shutdown }
 
