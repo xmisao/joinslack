@@ -26,7 +26,7 @@
   this.send_invite = function(e) {
     parent.change_state('sending');
     $.post(
-      '/invite',
+      './invite',
       {email: this.email.value},
       function(data, textStatus, jqxhr){
         if (data['succeeded']) {
