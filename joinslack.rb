@@ -50,7 +50,8 @@ end
 def start_server(team, token)
   srv = WEBrick::HTTPServer.new({
     :BindAddress => '0.0.0.0',
-    :Port => 8080})
+    :Port => 8080,
+    :DoNotReverseLookup => true})
 
   path = File.expand_path(File.dirname($0)) + '/htdocs/'
 
